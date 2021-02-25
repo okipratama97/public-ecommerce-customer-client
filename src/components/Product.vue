@@ -1,5 +1,5 @@
 <template>
-  <div class="col-4">
+  <div class="col-md-auto">
     <div class="card p-card">
       <img class="login-image card-img-top product-image mx-auto" :src="product.image_url" alt="">
       <div class="card-body">
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+
 export default {
   props: {
     product: Object

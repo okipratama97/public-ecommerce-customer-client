@@ -11,10 +11,6 @@ const navigationGuard = (to, from, next) => {
     next({ name: 'Home' })
   } else if (to.name === 'Carts' && !localStorage.access_token) {
     next({ name: 'Login' })
-  } else if (to.name === 'Add' && !localStorage.access_token) {
-    next({ name: 'Login' })
-  } else if (to.name === 'Edit' && !localStorage.access_token) {
-    next({ name: 'Login' })
   } else {
     next()
   }

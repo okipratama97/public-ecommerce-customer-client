@@ -15,7 +15,7 @@
       </li>
     </ul>
     <div class="block-inline">
-      <button class="btn btn-danger"  @click.prevent="logout">
+      <button v-if="token" class="btn btn-danger"  @click.prevent="logout">
         Logout
       </button>
     </div>
@@ -36,6 +36,11 @@ export default {
     },
     cart () {
       this.$router.push('/carts')
+    }
+  },
+  computed: {
+    token () {
+      return localStorage.access_token
     }
   }
 }

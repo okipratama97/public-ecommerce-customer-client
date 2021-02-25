@@ -1,5 +1,5 @@
 <template>
-  <div class="col-4">
+  <div class="col-md-auto">
     <div class="card p-card">
       <img class="login-image card-img-top product-image mx-auto" :src="cart.Product.image_url" alt="">
       <div class="card-body">
@@ -8,13 +8,14 @@
         <p>Quantity: {{cart.quantity}}</p>
       </div>
       <div class="card-footer">
-        <button class="btn btn-success" :id="cart.Product.id" @click.prevent="addToCart(cart.Product.id)">Add More</button> || <button class="btn btn-danger" @click.prevent="removeCart(cart.id)">Delete</button>
+        <button class="btn btn-success" v-if="cart.quantity < cart.Product.stock" :id="cart.Product.id" @click.prevent="addToCart(cart.Product.id)"><i class="fa fa-plus" aria-hidden="true"></i></button> | <button v-if="cart.quantity > 1" class="btn btn-secondary" @click.prevent="deductFromCart(cart)"><i class="fa fa-minus" aria-hidden="true"></i></button> | <button class="btn btn-danger" @click.prevent="removeCart(cart.id)">Delete</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
   props: {
     cart: Object
@@ -25,6 +26,9 @@ export default {
     },
     addToCart (id) {
       this.$store.dispatch('addToCart', id)
+    },
+    deductFromCart (cart) {
+      this.$store.dispatch('deductFromCart', cart)
     }
   }
 }

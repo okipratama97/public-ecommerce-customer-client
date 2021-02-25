@@ -78,6 +78,21 @@ export default new Vuex.Store({
           console.log(response.data.message, '<<<!! ERROR DELETE')
         })
     },
+    deductFromCart (context, cart) {
+      axios
+        .patch(`/carts/${cart.id}`, { quantity: (cart.quantity - 1) }, {
+          headers: {
+            access_token: localStorage.access_token
+          }
+        })
+        .then(({ data }) => {
+          console.log(data, '<<<!! SUCCESS UPDATE')
+          context.dispatch('fetchAllCarts')
+        })
+        .catch(({ response }) => {
+          console.log(response.data.message, '<<<!! ERROR UPDATE')
+        })
+    },
     loginUser (context, payload) {
       axios.post('/signin', {
         email: payload.loginEmail,
