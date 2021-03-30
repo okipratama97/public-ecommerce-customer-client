@@ -1,5 +1,7 @@
 # ecommerce-customer-client
 
+Deployment link: https://eshop-pico.web.app/
+
 ## Project setup
 ```
 npm install
